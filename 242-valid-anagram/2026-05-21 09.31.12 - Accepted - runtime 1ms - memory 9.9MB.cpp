@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if(s.length() != t.length()) return false;
+
+        unordered_map<char,int> mp;
+        for(int x : s) mp[x]++;
+        for(int x : t) mp[x]--;
+
+        for(auto x : mp) {
+            if(x.second != 0) return false;
+        }
+        return true;
+    }
+};

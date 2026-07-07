@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+
+        // O(n2) solution ... TLE\
+        // int maxSum = INT_MIN; 
+        // for(int i = 0; i < n; i++) {
+        //     int sum = 0;
+        //     for(int j = i; j < n; j++) {
+        //         sum += nums[j];
+        //         maxSum = max(maxSum, sum);
+        //     }
+        // }
+        // return maxSum;
+
+
+        // Kadanes Algo , basically sum of two number, if sum becomes negative reset it to 0;
+        int maxSum = INT_MIN, sum = 0; 
+        for(int i = 0; i < n; i++) {
+            sum += nums[i];
+            maxSum = max(maxSum, sum);
+            if(sum < 0) sum = 0;
+        }
+        return maxSum;
+    }
+};
