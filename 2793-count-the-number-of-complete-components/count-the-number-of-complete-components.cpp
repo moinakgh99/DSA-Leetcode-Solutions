@@ -1,21 +1,72 @@
 class Solution {
 public:
 
-    void dfs(int i,  unordered_map<int, vector<int>> &adj, vector<bool> &visited, int &v, int &e) {
+    // void dfs(int i,  unordered_map<int, vector<int>> &adj, vector<bool> &visited, int &v, int &e) {
 
-        visited[i] = true;
-        v++;
-        e += adj[i].size();
+    //     visited[i] = true;
+    //     v++;
+    //     e += adj[i].size();
 
-        for(auto &ngbr : adj[i]) {
-            if(!visited[ngbr]) dfs(ngbr, adj, visited, v, e);
-        }
-    }
+    //     for(auto &ngbr : adj[i]) {
+    //         if(!visited[ngbr]) dfs(ngbr, adj, visited, v, e);
+    //     }
+    // }
 
-    int countCompleteComponents(int n, vector<vector<int>>& edges) {
+    // int countCompleteComponents(int n, vector<vector<int>>& edges) {
         
 
-        // Approach 1 : using DFS ..
+    //     // Approach 1 : using DFS ..
+    //     unordered_map<int, vector<int>> adj;
+    //     int res = 0;
+
+    //     for(auto &edge : edges) {
+    //         int u = edge[0], v = edge[1];
+    //         adj[u].push_back(v);
+    //         adj[v].push_back(u);
+    //     }
+
+    //     vector<bool> visited(n, false);
+    //     for(int i = 0; i < n; i++) {
+    //         if(visited[i] == true) continue;
+
+    //         int v = 0, e = 0;
+    //         dfs(i, adj, visited, v, e);
+
+    //         if((v * (v - 1)) == e) res++;
+    //     }
+
+    //     return res;
+    // }
+
+
+
+
+    void bfs(int i,  unordered_map<int, vector<int>> &adj, vector<bool> &visited, int &v, int &e) {
+
+        queue<int> q;
+        q.push(i);
+        visited[i] = true;
+
+        while(!q.empty()) {
+            int node = q.front();
+            q.pop();
+            v++;
+            e += adj[node].size();
+            for(auto &ngbr : adj[node]) {
+                if(!visited[ngbr]) {
+                    visited[ngbr] = true;
+                    q.push(ngbr);
+                }
+            }
+        }
+
+    }
+
+
+
+    // Approach 2 : Using bfs ...
+    int countCompleteComponents(int n, vector<vector<int>>& edges) {
+        
         unordered_map<int, vector<int>> adj;
         int res = 0;
 
@@ -30,7 +81,8 @@ public:
             if(visited[i] == true) continue;
 
             int v = 0, e = 0;
-            dfs(i, adj, visited, v, e);
+            
+            bfs(i, adj, visited, v, e);
 
             if((v * (v - 1)) == e) res++;
         }
