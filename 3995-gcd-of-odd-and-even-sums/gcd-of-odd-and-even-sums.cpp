@@ -13,9 +13,18 @@ public:
 
 
         // Approach 2 : Mathematical Formula ...
-        int sumOdd = n * n;
-        int sumEven = n * ( n + 1 );
+        // int sumOdd = n * n;
+        // int sumEven = n * ( n + 1 );
 
-        return __gcd(sumOdd, sumEven);
+        // return __gcd(sumOdd, sumEven);
+
+
+        // Approach 3 : Derived from approach 2
+        /*  __gcd(n * n, n * (n + 1));
+            n * __gcd(n, n + 1);
+            gcd for n and n + 1 will always be 1, so return only n ..
+        */
+
+        return n;
     }
 };
