@@ -21,6 +21,8 @@ public:
 
     vector<string> letterCombinations(string digits) {
 
+        if(digits.empty()) return {};
+
         unordered_map<char, string> mp;
         mp['2'] = "abc";
         mp['3'] = "def";
