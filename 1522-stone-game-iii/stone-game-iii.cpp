@@ -27,6 +27,7 @@ public:
     */
 
 
+    /*
     // Memoization of above code (Top down Approach) ...
     vector<int> dp;
     int solve(int i, vector<int>& stoneValue) {
@@ -48,6 +49,30 @@ public:
         int n = stoneValue.size();
         dp.resize(n+1, -1);
         int diff = solve(0, stoneValue);
+
+        if(diff > 0) return "Alice";
+        else if(diff < 0) return "Bob";
+        else return "Tie";
+    }
+    */
+
+
+    // Bottom up Approach (Tabulation) ....
+
+    string stoneGameIII(vector<int>& stoneValue) {
+        int n = stoneValue.size();
+        vector<int> dp(n+1);
+
+        for(int i = n - 1; i >= 0; i--) {
+
+            dp[i] = stoneValue[i] - dp[i + 1];
+
+            if(i + 2 <= n) dp[i] = max(dp[i], stoneValue[i] + stoneValue[i + 1] - dp[i + 2]);
+            if(i + 3 <= n) dp[i] = max(dp[i], stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2] - dp[i + 3]);
+
+        }
+
+        int diff = dp[0];
 
         if(diff > 0) return "Alice";
         else if(diff < 0) return "Bob";
