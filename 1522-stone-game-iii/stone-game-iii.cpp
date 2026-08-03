@@ -57,6 +57,7 @@ public:
     */
 
 
+    /*
     // Bottom up Approach (Tabulation) ....
 
     string stoneGameIII(vector<int>& stoneValue) {
@@ -73,6 +74,35 @@ public:
         }
 
         int diff = dp[0];
+
+        if(diff > 0) return "Alice";
+        else if(diff < 0) return "Bob";
+        else return "Tie";
+    }
+    */
+
+
+    // Space Optimization (Optimal Approach) ...
+    string stoneGameIII(vector<int>& stoneValue) {
+        int n = stoneValue.size();
+        vector<int> dp(n+1);
+
+        int a = 0, b = 0, c = 0;
+        for(int i = n - 1; i >= 0; i--) {
+
+            int res = INT_MIN;
+
+            res = max(res, stoneValue[i] - a);
+
+            if(i + 2 <= n) res = max(res, stoneValue[i] + stoneValue[i + 1] - b);
+            if(i + 3 <= n) res = max(res, stoneValue[i] + stoneValue[i + 1] + stoneValue[i + 2] - c);
+
+            c = b;
+            b = a;
+            a = res;
+        }
+
+        int diff = a;
 
         if(diff > 0) return "Alice";
         else if(diff < 0) return "Bob";
