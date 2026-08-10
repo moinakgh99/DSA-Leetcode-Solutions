@@ -21,7 +21,7 @@ public:
 
 
     // Approach 2 -> Memoization of Approach 1 ( Top down Approach ) ....
-
+    /*
     vector<int>dp;
     bool alice(int n) {
         if(n == 0) return false;  // jiski bhi baari aaegi vo dekhaga ye ...
@@ -42,5 +42,24 @@ public:
     bool winnerSquareGame(int n) {
         dp.assign(n+1, -1);
         return alice(n);  // agar alice jeeta to true vrna false ...
+    }
+    */
+
+
+    // Approach 3 -> Bottom Up Approach ( Tabulation ) ....
+    vector<int>dp;
+    bool winnerSquareGame(int n) {
+        dp.assign(n+1, false);
+        
+        for(int i = 1; i <= n; i++) {
+            for(int k = 1; k * k <= i; k++) {
+                if(dp[i - (k * k)] == false) {
+                    dp[i] = true;
+                    break;
+                }
+            }
+        }
+
+        return dp[n];
     }
 };
