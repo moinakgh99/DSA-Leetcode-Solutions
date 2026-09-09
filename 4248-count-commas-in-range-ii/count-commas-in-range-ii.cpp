@@ -3,6 +3,9 @@ public:
     long long countCommas(long long n) {
         if(n < 1000) return 0;
 
+        // Approach 1 ....
+
+        /*
         long long ans = 0;
         long long lower = 1000;
         long long commas = 1;
@@ -17,6 +20,19 @@ public:
 
             lower *= 1000;
             commas++;
+        }
+
+        return ans;
+        */
+
+
+        // Approach 2 ...
+        long long ans = 0;
+        long long lower = 1000;
+
+        while( lower <= n ) {
+            ans += (n - lower + 1);
+            lower *= 1000;
         }
 
         return ans;
