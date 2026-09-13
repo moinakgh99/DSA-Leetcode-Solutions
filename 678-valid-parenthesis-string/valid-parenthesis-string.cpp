@@ -1,24 +1,28 @@
 class Solution {
 public:
     bool checkValidString(string s) {
-        int mini = 0, mxi = 0;
+        int n = s.length();
+
+        int mini = 0, maxi = 0;
 
         for(char ch : s) {
             if(ch == '(') {
                 mini++;
-                mxi++;
+                maxi++;
             }
-            else if(ch == ')') {
+
+            if(ch == ')') {
                 mini--;
-                mxi--;
+                maxi--;
             }
-            else { // agar * hua to !!!
+
+            if(ch == '*') {
                 mini--;
-                mxi++;
+                maxi++;
             }
 
             if(mini < 0) mini = 0;
-            if(mxi < 0) return false;
+            if(maxi < 0) return false;
         }
 
         return (mini == 0);
