@@ -7,10 +7,9 @@ public:
         for(int i = 0; i < n; i++) {
             if(i > maxIdx) return false;
 
-            maxIdx = max(maxIdx, i + nums[i]);
-
-            if(maxIdx == n-1) return true;
+            maxIdx = max(i + nums[i], maxIdx);
         }
-        return true;
+
+        return (maxIdx >= n-1);
     }
 };
