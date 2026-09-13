@@ -7,15 +7,16 @@ public:
         sort(g.begin(), g.end());
         sort(s.begin(), s.end());
 
-        int c = 0;
         int i = 0, j = 0;
-
+        int c = 0;
         while(i < n && j < m) {
-            if(s[j] >= g[i]) {
+            if(g[i] <= s[j]) {
                 c++;
                 i++;
                 j++;
-            } else j++;
+            }
+
+            else j++;
         }
 
         return c;
