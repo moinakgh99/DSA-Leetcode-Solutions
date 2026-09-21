@@ -24,15 +24,11 @@ public:
             currentRemainderCount[currentElementRemainder]++;
 
             // Extend all subarrays that ended at i - 1
-            for (int previousRemainder = 0;
-                 previousRemainder < k;
-                 previousRemainder++) {
+            for (int previousRemainder = 0; previousRemainder < k;  previousRemainder++) {
 
-                int newRemainder =
-                    (long long)previousRemainder * nums[i] % k;
+                int newRemainder = (long long)previousRemainder * nums[i] % k;
 
-                currentRemainderCount[newRemainder] +=
-                    previousRemainderCount[previousRemainder];
+                currentRemainderCount[newRemainder] += previousRemainderCount[previousRemainder];
             }
 
             // Current becomes previous for the next iteration
