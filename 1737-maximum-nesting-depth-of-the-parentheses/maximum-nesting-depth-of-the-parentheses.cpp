@@ -1,11 +1,9 @@
 class Solution {
 public:
     int maxDepth(string s) {
-        int c = 0;
-        int depth = 0;
+        int n = s.length();
 
-        if(s.size() == 1) return 0;
-
+        int c = 0, depth = 0;
         for(char ch : s) {
             if(ch == '(') {
                 c++;
