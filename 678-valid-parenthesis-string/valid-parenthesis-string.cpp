@@ -5,18 +5,16 @@ public:
 
         int mini = 0, maxi = 0;
 
-        for(char ch : s) {
-            if(ch == '(') {
+        for(int i = 0; i < n; i++) {
+            if(s[i] == '(') {
                 mini++;
                 maxi++;
             }
-
-            if(ch == ')') {
+            else if(s[i] == ')') {
                 mini--;
                 maxi--;
             }
-
-            if(ch == '*') {
+            else if(s[i] == '*') {
                 mini--;
                 maxi++;
             }
