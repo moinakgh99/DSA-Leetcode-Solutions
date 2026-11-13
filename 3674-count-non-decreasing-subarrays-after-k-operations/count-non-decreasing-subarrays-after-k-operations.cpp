@@ -25,7 +25,7 @@ public:
                 auto [rightmostNum, rightmostCount] = dq.front();
                 dq.pop_front();
                 cost -= 1LL * (rightmostNum - nums[j]);
-                --j;
+                j--;
                 if (rightmostCount > 1) {
                     dq.emplace_front(rightmostNum, rightmostCount - 1);
                 }
