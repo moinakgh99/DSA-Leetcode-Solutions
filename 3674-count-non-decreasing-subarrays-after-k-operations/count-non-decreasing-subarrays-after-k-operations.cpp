@@ -8,7 +8,7 @@ public:
 
         deque<pair<int, int>> dq;
 
-        for (int i = n - 1, j = n - 1; i >= 0; --i) {
+        for (int i = n - 1, j = n - 1; i >= 0; i--) {
             int num = nums[i];
             int count = 1;
 
